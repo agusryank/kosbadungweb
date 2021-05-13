@@ -281,7 +281,9 @@ class mymodel extends CI_Model
     function tambah_kamarkos()
     {
         $target_dir = "androidAPI/Image/FotoKamarKos/";
-        $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
+        $name = basename($_FILES["userfile"]["name"]);
+        $new_name = time() . "-" . rand(10, 99) . "-" . $name;
+        $target_file = $target_dir . $new_name;
         move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
 
         $data = array(
@@ -293,7 +295,7 @@ class mymodel extends CI_Model
             'Fasilitaskamar' => $this->input->post('fasilitas'),
             'Jumlahkamar' => $this->input->post('jmlkamar'),
             'Hargakamar' => $this->input->post('harga'),
-            'Foto' => $_FILES['userfile']['name'],
+            'Foto' => $new_name,
             'Aktif' => 1,
         );
         $this->db->insert('kamarkos', $data);

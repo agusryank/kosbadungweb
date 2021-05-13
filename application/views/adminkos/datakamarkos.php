@@ -110,6 +110,7 @@
                         <input type="hidden" name="namapemilik" class="form-control " value="<?= $m->Namapemilik; ?>" required="">
                     </div>
                     <div class="form-group ">
+                        <input class="form-control" type="hidden" name="old_userfile" id="foto" value="<?= $m->Foto; ?>" />
                         <label class="small mb-1" for="foto">Foto Kamar</label>
                         <input class="form-control" type="file" name="userfile" id="foto" required="" />
                     </div>

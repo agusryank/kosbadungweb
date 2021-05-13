@@ -188,8 +188,8 @@ class Adminkos extends CI_Controller
     public function Tambah_data_kamarkos()
     {
         $this->mymodel->tambah_kamarkos();
-        $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
-        Data kamar kos berhasil ditambahkan. ! </div>');
+        // $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+        // Data kamar kos berhasil ditambahkan. ! </div>');
         redirect('adminkos/datakamarkos');
     }
 
@@ -226,8 +226,13 @@ class Adminkos extends CI_Controller
     public function Edit_data_kamarkos()
     {
         $target_dir = "androidAPI/Image/FotoKamarKos/";
-        $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
+        $name = basename($_FILES["userfile"]["name"]);
+        $new_name = time() . "-" . rand(10, 99) . "-" . $name;
+        $target_file = $target_dir . $new_name;
         move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
+
+        $target_unlink = $target_dir . $this->input->post('old_userfile');
+        unlink($target_unlink);
 
         $data = array(
             'Namakamar' => $this->input->post('namakamar'),
@@ -238,7 +243,7 @@ class Adminkos extends CI_Controller
             'Fasilitaskamar' => $this->input->post('fasilitas'),
             'Jumlahkamar' => $this->input->post('jmlkamar'),
             'Hargakamar' => $this->input->post('harga'),
-            'Foto' => $_FILES['userfile']['name'],
+            'Foto' => $new_name,
             'Aktif' => 1,
         );
         $this->db->where('id', $this->input->post('id'));
