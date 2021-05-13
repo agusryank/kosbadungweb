@@ -278,43 +278,53 @@ class mymodel extends CI_Model
         return $this->db->delete('kos');
     }
 
-    function proses_edit_datakos()
+    function tambah_kamarkos()
     {
+        $target_dir = "androidAPI/Image/FotoKamarKos/";
+        $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
+        move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
 
-        $target_dir = "androidAPI/Image/FotoKos/";
-        $target_file = $target_dir . basename($_FILES["foto1"]["name"]);
-        move_uploaded_file($_FILES["foto1"]["tmp_name"], $target_file);
+        $data = array(
+            'Namakamar' => $this->input->post('namakamar'),
+            'id_kos' => $this->input->post('id_kos'),
+            'Namakos' => $this->input->post('namakos'),
+            'id_pemilik' => $this->input->post('id_pemilik'),
+            'Namapemilik' => $this->input->post('namapemilik'),
+            'Fasilitaskamar' => $this->input->post('fasilitas'),
+            'Jumlahkamar' => $this->input->post('jmlkamar'),
+            'Hargakamar' => $this->input->post('harga'),
+            'Foto' => $_FILES['userfile']['name'],
+            'Aktif' => 1,
+        );
+        $this->db->insert('kamarkos', $data);
+        $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+            Data Kamar Kos Berhasil Ditambahkan ! </div>');
+        redirect('adminkos/datakamarkos');
+    }
 
-        $target_dir = "androidAPI/Image/FotoKos/";
-        $target_file = $target_dir . basename($_FILES["foto2"]["name"]);
-        move_uploaded_file($_FILES["foto2"]["tmp_name"], $target_file);
+    function proses_edit_kamarkos()
+    {
+        $target_dir = "androidAPI/Image/FotoKamarKos/";
+        $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
+        move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
 
-        $target_dir = "androidAPI/Image/FotoKos/";
-        $target_file = $target_dir . basename($_FILES["foto3"]["name"]);
-        move_uploaded_file($_FILES["foto3"]["tmp_name"], $target_file);
-
-        $target_dir = "androidAPI/Image/FotoKos/";
-        $target_file = $target_dir . basename($_FILES["foto4"]["name"]);
-        move_uploaded_file($_FILES["foto4"]["tmp_name"], $target_file);
-
-        $data = [
-            "foto1" => $_FILES['foto1']['name'],
-            "foto2" => $_FILES['foto2']['name'],
-            "foto3" => $_FILES['foto3']['name'],
-            "foto4" => $_FILES['foto4']['name'],
-            "Namakos" => $this->input->post('namakos'),
-            "Namapemilik" => $this->input->post('namapemilik'),
-            "Latitude" => $this->input->post('lat'),
-            "Longtitude" => $this->input->post('long'),
-            "Jumlahkamar" => $this->input->post('jmlkamar'),
-            "Harga" => $this->input->post('harga'),
-            "Deskripsi" => $this->input->post('deskripsi'),
-            "Kecamatan" => $this->input->post('kecamatan'),
-            "Aktif"  => $this->input->post('aktif'),
-        ];
-
+        $data = array(
+            'Namakamar' => $this->input->post('namakamar'),
+            'id_kos' => $this->input->post('id_kos'),
+            'Namakos' => $this->input->post('namakos'),
+            'id_pemilik' => $this->input->post('id_pemilik'),
+            'Namapemilik' => $this->input->post('namapemilik'),
+            'Fasilitaskamar' => $this->input->post('fasilitas'),
+            'Jumlahkamar' => $this->input->post('jmlkamar'),
+            'Hargakamar' => $this->input->post('harga'),
+            'Foto' => $_FILES['userfile']['name'],
+            'Aktif' => 1,
+        );
         $this->db->where('id', $this->input->post('id'));
-        $this->db->update('kos', $data);
+        $this->db->update('kamarkos', $data);
+        $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+            Data Kamar Kos Berhasil Ditambahkan ! </div>');
+        redirect('adminkos/datakamarkos');
     }
 
 

@@ -23,7 +23,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Form Edit Data Kos</h6>
                         </div>
                         <div class="card-body">
-                            <?php echo form_open_multipart('adminkos/proses_tambah_kos'); ?>
+                            <?php echo form_open_multipart('adminkos/Edit_kamarkos'); ?>
                             <div class="form-group ">
                                 <label class="small mb-1" for="namakos">Nama Kos : </label>
                                 <input type="text" name="namakos" class="form-control" value="" id="namakos" placeholder="Nama Kos" required="">

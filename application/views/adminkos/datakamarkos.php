@@ -12,10 +12,13 @@
 
         <div class="card-body">
             <?php echo $this->session->flashdata('Pesan'); ?>
-            <!-- 
-            <a href="<?= base_url('adminkos/tambahkamarkos'); ?>" type="button" class="btn btn-primary">
+
+            <!-- <a href="<?= base_url('adminkos/tambahkamarkos'); ?>" type="button" class="btn btn-primary">
                 Tambah data Kamar kos
             </a> -->
+            <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#addmodal">
+                <span class="text">Tambah data Kamar kos</span>
+            </button> -->
 
             <hr>
             <div class="table-responsive">
@@ -87,7 +90,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?php echo form_open_multipart('adminkos/Tambah_data_kamarkos'); ?>
+                    <?php echo form_open_multipart('adminkos/Edit_data_kamarkos/' . $m->id); ?>
+                    <input type="hidden" name="id" value="<?= $m->id; ?>">
                     <div class="form-group ">
                         <label class="small mb-1" for="namakos">Nama Kamar : </label>
                         <input type="text" name="namakamar" class="form-control " value="<?= $m->Namakamar; ?>" id="namakos" placeholder="Nama Kamar" required="">
