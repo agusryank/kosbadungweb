@@ -253,17 +253,25 @@ class Adminkos extends CI_Controller
         redirect('adminkos/datakamarkos');
     }
 
-    // edit kamar kos
-    public function Edit_kamarkos($id)
+
+    function hapus_data_kamarkos($id)
     {
-        $this->mymodel->proses_edit_kamarkos($id);
-        $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
-        Data Telah Berhasil Diedit!
-      </div>');
-        redirect('adminkos/datakos');
+        $data = $this->mymodel->Datakamarkosid($id)->row();
+        $nama1 = 'androidAPI/Image/FotoKamarKos/' . $data->Foto;
+
+        if (
+            is_readable($nama1) && unlink($nama1)
+        ) {
+            $this->mymodel->hapus_data_kamar($id);
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+            Data Kamar Kos berhasil dihapus </div>');
+            redirect('adminkos/datakamarkos');
+        } else {
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-danger" role="alert">
+            Data Kamar Kos gagal dihapus </div>');
+            redirect('adminkos/datakamarkos');
+        }
     }
-
-
 
     // Controller Untuk  halaman transaksi
 

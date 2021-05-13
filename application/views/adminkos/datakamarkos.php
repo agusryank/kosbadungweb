@@ -110,9 +110,10 @@
                         <input type="hidden" name="namapemilik" class="form-control " value="<?= $m->Namapemilik; ?>" required="">
                     </div>
                     <div class="form-group ">
-                        <input class="form-control" type="hidden" name="old_userfile" id="foto" value="<?= $m->Foto; ?>" />
+                        <input class="form-control" value="<?= $m->Foto; ?>" type="hidden" name="old_userfile" id="foto" />
                         <label class="small mb-1" for="foto">Foto Kamar</label>
                         <input class="form-control" type="file" name="userfile" id="foto" required="" />
+                        <img size="20%" class="img-fluid" src="<?= base_url('androidAPI/Image/FotoKamarKos/' . $m->Foto); ?> ">
                     </div>
                     <div class="form-group">
                         <label class="small mb-1" for="fasilitas">Fasilitas Kamar :</label>
@@ -131,7 +132,7 @@
                 </div>
                 <div class="card-footer" style="text-align: right;">
                     <a href="<?php echo base_url() ?>adminkos/datakamarkos" class="btn btn-secondary">Kembali</a>
-                    <button type="submit" value="upload" class="btn btn-primary">Tambah</button>
+                    <button type="submit" value="upload" class="btn btn-primary">Ubah</button>
                     <?php echo form_close() ?>
 
                 </div>
@@ -139,5 +140,31 @@
         </div>
     </div>
 <?php endforeach ?>
+
+<!-- Akhir Modal -->
+
+
+<!-- Modal untuk Konfirmasi Delete Data -->
+
+<div class="modal fade" id="konfirmdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anda yakin ingin menghapus data ini ?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Pilih "Delete" untuk menghapus.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                <a href="<?php echo base_url() ?>adminkos/hapus_data_kamarkos/<?php echo $m->id; ?>" class="btn btn-danger">
+                    <span class="text">Delete</span> </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Akhir Modal -->

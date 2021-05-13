@@ -267,6 +267,11 @@ class mymodel extends CI_Model
         return $query->result();
     }
 
+    function Datakamarkosid($id)
+    {
+        return $this->db->get_where('kamarkos', array('id' => $id));
+    }
+
     function datahapusid($id)
     {
         return $this->db->get_where('kos', array('id' => $id));
@@ -276,6 +281,12 @@ class mymodel extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete('kos');
+    }
+
+    function hapus_data_kamar($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('kamarkos');
     }
 
     function tambah_kamarkos()
@@ -304,30 +315,6 @@ class mymodel extends CI_Model
         redirect('adminkos/datakamarkos');
     }
 
-    function proses_edit_kamarkos()
-    {
-        $target_dir = "androidAPI/Image/FotoKamarKos/";
-        $target_file = $target_dir . basename($_FILES["userfile"]["name"]);
-        move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
-
-        $data = array(
-            'Namakamar' => $this->input->post('namakamar'),
-            'id_kos' => $this->input->post('id_kos'),
-            'Namakos' => $this->input->post('namakos'),
-            'id_pemilik' => $this->input->post('id_pemilik'),
-            'Namapemilik' => $this->input->post('namapemilik'),
-            'Fasilitaskamar' => $this->input->post('fasilitas'),
-            'Jumlahkamar' => $this->input->post('jmlkamar'),
-            'Hargakamar' => $this->input->post('harga'),
-            'Foto' => $_FILES['userfile']['name'],
-            'Aktif' => 1,
-        );
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('kamarkos', $data);
-        $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
-            Data Kamar Kos Berhasil Ditambahkan ! </div>');
-        redirect('adminkos/datakamarkos');
-    }
 
 
     // Data Kamar Kos Model (Admin)
