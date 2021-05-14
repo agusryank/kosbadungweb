@@ -150,7 +150,7 @@ class Adminkos extends CI_Controller
 
     public function edit_datakos($id)
     {
-        $this->mymodel->proses_edit_datakos($id);
+        $this->mymodel->proses_edit_datakos();
         $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
         Data Telah Berhasil Diedit!
       </div>');

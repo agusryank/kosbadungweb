@@ -65,11 +65,11 @@
                                             </a>
                                         </p>
                                         <P>
-                                            <!-- <button class="badge badge-primary" data-toggle="modal" data-target="#editmodal<?php echo $m->id; ?>">
-                                                <span class="text">Edit</span> </button> -->
-                                            <a href="<?php echo base_url() ?>adminkos/editkos/<?php echo $m->id; ?>" type="button" class="badge badge-primary">
+                                            <button class="badge badge-primary" data-toggle="modal" data-target="#editmodal<?php echo $m->id; ?>">
+                                                <span class="text">Edit Data Kos</span> </button>
+                                            <!-- <a href="<?php echo base_url() ?>adminkos/editkos/<?php echo $m->id; ?>" type="button" class="badge badge-primary">
                                                 Edit Data Kos
-                                            </a>
+                                            </a> -->
                                         </P>
                                         <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#konfirmdelete">
                                             Delete
@@ -105,68 +105,75 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="user" method="POST" action="<?php echo base_url() ?>adminkos/edit_datakos/<?php echo $m->id; ?>">
+                        <?php echo form_open_multipart('adminkos/edit_datakos/' . $m->id); ?>
 
-                            <input type="hidden" name="id" value="<?php echo $m->id; ?>">
-                            <div class="form-group">
-                                <Label class="small mb-1">Nama Kos</Label>
-                                <input type="text" name="namakos" class="form-control" value="<?php echo $m->Namakos; ?>" required="">
+                        <input type="hidden" name="id" value="<?php echo $m->id; ?>">
+                        <div class="form-group">
+                            <Label class="small mb-1">Nama Kos</Label>
+                            <input type="text" name="namakos" class="form-control" value="<?php echo $m->Namakos; ?>" required="">
+                        </div>
+                        <div class="form-group">
+                            <Label class="small mb-1">Nama Pemilik</Label>
+                            <input type="text" name="namapemilik" class="form-control" value="<?php echo $m->Namapemilik; ?>" required="">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="small mb-1" for="Latitude">Latitude : </label>
+                                <input type="text" class="form-control " name="lat" id="Latitude" value="<?php echo $m->Latitude; ?>" required="">
                             </div>
-                            <div class="form-group">
-                                <Label class="small mb-1">Nama Pemilik</Label>
-                                <input type="text" name="namapemilik" class="form-control" value="<?php echo $m->Namapemilik; ?>" required="">
+                            <div class="col-sm-6">
+                                <label class="small mb-1" for="Longtitude">Longtitude :</label>
+                                <input type="text" class="form-control " id="Longtitude" name="long" value="<?php echo $m->Longtitude; ?>" required="">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label class="small mb-1" for="Latitude">Latitude : </label>
-                                    <input type="text" class="form-control " name="lat" id="Latitude" value="<?php echo $m->Latitude; ?>" required="">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="small mb-1" for="Longtitude">Longtitude :</label>
-                                    <input type="text" class="form-control " id="Longtitude" name="long" value="<?php echo $m->Longtitude; ?>" required="">
-                                </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="small mb-1" for="foto1">Foto 1:</label>
+                            <input type="hidden" name="oldFoto1" value="<?php echo $m->foto1; ?>">
+                            <input type="hidden" name="oldFoto2" value="<?php echo $m->foto2; ?>">
+                            <input type="hidden" name="oldFoto3" value="<?php echo $m->foto3; ?>">
+                            <input type="hidden" name="oldFoto4" value="<?php echo $m->foto4; ?>">
+
+                            <input type="file" class="form-control " id="foto1" name="foto1" required="">
+                            <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto1); ?>" width="50%" height="50%" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="small mb-1" for="foto2">Foto 2:</label>
+                            <input type="file" class="form-control" id="foto2" name="foto2">
+                            <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto2); ?>" width="50%" height="50%" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="small mb-1" for="foto3">Foto 3:</label>
+                            <input type="file" class="form-control " id="foto3" name="foto3">
+                            <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto3); ?>" width="50%" height="50%" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="small mb-1" for="foto4">Foto 4:</label>
+                            <input type="file" class="form-control " id="foto4" name="foto4">
+                            <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto3); ?>" width="50%" height="50%" />
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label class="small mb-1" for="Longtitude">Kecamatan :</label>
+                                <select class="form-control" name="kecamatan" id="Kecamatan" form="form-group" required="">
+                                    <option value="<?php echo $m->Kecamatan; ?>" selected><?php echo $m->Kecamatan; ?></option>
+                                    <option value="Kuta Selatan">Kuta Selatan</option>
+                                    <option value="Kuta Utara">Kuta Utara</option>
+                                    <option value="Kuta">Kuta</option>
+                                    <option value="Kuta Tengah">Kuta Tengah</option>
+                                    <option value="Petang">Petang</option>
+                                </select>
                             </div>
-                            <div class="form-group ">
-                                <label class="small mb-1" for="foto1">Foto 1:</label>
-                                <input type="file" class="form-control " id="foto1" value="<?php echo $m->foto1; ?>" name="foto1" required="">
-                                <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto1); ?>" width="50%" height="50%" />
-                            </div>
-                            <div class="form-group ">
-                                <label class="small mb-1" for="foto2">Foto 2:</label>
-                                <input type="file" class="form-control" id="foto2" value="<?php echo $m->foto2; ?>" name="foto2">
-                                <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto2); ?>" width="50%" height="50%" />
-                            </div>
-                            <div class="form-group ">
-                                <label class="small mb-1" for="foto3">Foto 3:</label>
-                                <input type="file" class="form-control " id="foto3" value="<?php echo $m->foto3; ?>" name="foto3">
-                                <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto3); ?>" width="50%" height="50%" />
-                            </div>
-                            <div class="form-group ">
-                                <label class="small mb-1" for="foto4">Foto 4:</label>
-                                <input type="file" class="form-control " id="foto4" value="<?php echo $m->foto4; ?>" name="foto4">
-                                <img src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto3); ?>" width="50%" height="50%" />
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <label class="small mb-1" for="Longtitude">Kecamatan :</label>
-                                    <select class="form-control" name="kecamatan" id="Kecamatan" form="form-group" required="">
-                                        <option value="<?php echo $m->Kecamatan; ?>" selected><?php echo $m->Kecamatan; ?></option>
-                                        <option value="Kuta Selatan">Kuta Selatan</option>
-                                        <option value="Kuta Utara">Kuta Utara</option>
-                                        <option value="Kuta">Kuta</option>
-                                        <option value="Kuta Tengah">Kuta Tengah</option>
-                                        <option value="Petang">Petang</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <Label class="small mb-1">Deskripsi</Label>
-                                <textarea type="text" name="deskripsi" class="form-control" required=""><?php echo $m->Deskripsi; ?></textarea>
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <Label class="small mb-1">Deskripsi</Label>
+                            <textarea type="text" name="deskripsi" class="form-control" required=""><?php echo $m->Deskripsi; ?></textarea>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" name="id" value="<?php echo $m->id; ?>">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                         <button type="submit" class="btn btn-primary">Ubah</button>
+                        <?php echo form_close() ?>
                     </div>
                     </form>
                 </div>
