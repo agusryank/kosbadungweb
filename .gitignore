@@ -31,7 +31,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 
 # image file
-# androidAPI/Image/FotoKamarKos/*
-# androidAPI/Image/BuktiPembayaran/*
-# androidAPI/Image/FotoKos/*
+androidAPI/Image/FotoKamarKos/*
+androidAPI/Image/BuktiPembayaran/*
+androidAPI/Image/FotoKos/*
 
