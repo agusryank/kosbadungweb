@@ -2,8 +2,11 @@
 
 include_once('koneksi.php');
 
-$id = $_POST['id'];
+$id_kos = $_POST['id_kos'];
+$id_pemilik = $_POST['id_pemilik'];
+$id_penyewa = $_POST['id_penyewa'];
 $namakos = $_POST['namakos'];
+$namakamar = $_POST['namakamar'];
 $namapemilik = $_POST['namapemilik'];
 $namapenyewa = $_POST['namapenyewa'];
 $bukti = base64_decode($_POST['bukti']);
@@ -19,7 +22,7 @@ $nama_image = "Bukti-".$tgl.$nmb_rndm.$namapenyewa.".jpeg";
 
 $response = array();
 
-$insert = "INSERT INTO `transaksi` (`id`,`Namakos`,`Namapemilik`,`Namauser`,`Buktipembayaran`,`Tglmulai`,`Lamasewa`,`Jumlahkamar`,`Totalharga`,`Status`) VALUES (NULL,'$namakos','$namapemilik','$namapenyewa','$nama_image','$tgl_kos','$lamasewa','$jumlahkamar','$hargakos','Pending')";
+$insert = "INSERT INTO `transaksi` (`id`,`id_namakos`,`Namakos`,`id_namapemilik`,`Namapemilik`,`id_namauser`,`Namauser`,`id_namakamar`,`Namakamar`,`Buktipembayaran`,`Tglmulai`,`Lamasewa`,`Jumlahkamar`,`Totalharga`,`Status`) VALUES (NULL,'$id_namakos','$namakos','$id_namapemilik','$namapemilik','$id_penyewa','$namapenyewa','$id_namakamar','$namakamar','$nama_image','$tgl_kos','$lamasewa','$jumlahkamar','$hargakos','Pending')";
 
 
 $simpan_foto_folder = "Image/BuktiPembayaran/".$nama_image;
