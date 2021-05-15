@@ -59,8 +59,9 @@
                                         <option value="Kuta Selatan">Kuta Selatan</option>
                                         <option value="Kuta Utara">Kuta Utara</option>
                                         <option value="Kuta">Kuta</option>
-                                        <option value="Kuta Tengah">Kuta Tengah</option>
+                                        <option value="Kuta Tengah">Kuta Mengwi</option>
                                         <option value="Petang">Petang</option>
+                                        <option value="Petang">Abiansemal</option>
                                     </select>
                                 </div>
                             </div>
