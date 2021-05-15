@@ -120,10 +120,6 @@ class mymodel extends CI_Model
     }
 
 
-
-
-
-
     // Data Penyewa Model (SuperAdmin)
 
     function ambil_id_datapenyewa($id)
