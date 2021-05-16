@@ -1,29 +1,12 @@
                 <!-- Begin Page Content -->
                 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-                <style type="text/css">
-                    /* Always set the map height explicitly to define the size of the div
-                        * element that contains the map. */
-                    #map {
-                        height: 50%;
-                        width: 50%;
-                        margin: auto;
-                    }
-
-                    /* Optional: Makes the sample page fill the window. */
-                    html,
-                    body {
-                        height: 100%;
-                        margin: 0;
-                        padding: 0;
-                    }
-                </style>
                 <script>
                     function initMap() {
                         const myLatlng = {
                             lat: -8.5193,
                             lng: 115.1927
                         };
-                        const map = new google.maps.Map(document.getElementById("map"), {
+                        const map = new google.maps.Map(document.getElementById("map-container-google-1"), {
                             zoom: 10,
                             center: myLatlng,
                         });
@@ -48,7 +31,6 @@
                         });
                     }
                 </script>
-                <div id="map"></div>
                 <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbmLZgJDDWp1lLXfKICo9BoUlHt1ZdQ_s&callback=initMap&libraries=&v=weekly" async></script>
                 <div class="container-fluid">
@@ -80,7 +62,7 @@
 
                             <div class="form-group">
                                 <label class="small mb-1" for="long">Pilih Lokasi Anda</label>
-                                <div id="map" class="Map_lokasi" style="width: 100%; height:100%"></div>
+                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px"></div>
                             </div>
 
                             <div class="form-group ">
