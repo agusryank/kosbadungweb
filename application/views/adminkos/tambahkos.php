@@ -60,18 +60,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="small mb-1" for="long">Pilih Lokasi Anda</label>
-                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px"></div>
+                                <label class="small mb-1" for="long">Lokasi Alamat Kos :</label>
+                                <p> <label class="small mb-1" for="long">Drag and drop pada maps, untuk menentukan alamat lokasi kos anda </label>
+                                </p>
+                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 300px "></div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label class="small mb-1" for="lat">Latitude : </label>
-                                    <input type="text" name="lat" class="form-control " id="map_lat" placeholder="Latitude" required="">
+                                    <input type="hidden" name="lat" class="form-control " id="map_lat" placeholder="Latitude" required="">
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="small mb-1" for="long">Longtitude :</label>
-                                    <input type="text" class="form-control" name="long" id="map_long" placeholder="Longtitude" required="">
+                                    <input type="hidden" class="form-control" name="long" id="map_long" placeholder="Longtitude" required="">
                                 </div>
                             </div>
 
