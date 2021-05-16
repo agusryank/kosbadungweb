@@ -9,11 +9,6 @@ class Api extends CI_Controller
         $this->load->model('api_model');
     }
 
-
-
-
-    // Controller Untuk  halaman Index
-
     public function index(){
         echo "this is API control";
     }
@@ -25,6 +20,22 @@ class Api extends CI_Controller
             '2' => $this->input->post('longitude'),
             '3' => $this->input->post('radius'),
             '4' => 'select_kost'
+        );  
+
+        $var = array('n' => 'sp_kost');
+        $var['v'] = $inVar;
+        $list = $this->api_model->sp($var)->result();
+
+        echo json_encode($list);
+    }
+
+    public function getKostByDistricts()
+    {
+        $inVar = array(
+            '1' => '',
+            '2' => '',
+            '3' => $this->input->post('kecamatan'),
+            '4' => 'select_kec'
         );  
 
         $var = array('n' => 'sp_kost');
