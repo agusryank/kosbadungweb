@@ -1,8 +1,58 @@
                 <!-- Begin Page Content -->
                 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+                <style type="text/css">
+                    /* Always set the map height explicitly to define the size of the div
+                        * element that contains the map. */
+                    #map {
+                        height: 50%;
+                        width: 50%;
+                        margin: auto;
+                    }
+
+                    /* Optional: Makes the sample page fill the window. */
+                    html,
+                    body {
+                        height: 100%;
+                        margin: 0;
+                        padding: 0;
+                    }
+                </style>
+                <script>
+                    function initMap() {
+                        const myLatlng = {
+                            lat: -8.5193,
+                            lng: 115.1927
+                        };
+                        const map = new google.maps.Map(document.getElementById("map"), {
+                            zoom: 10,
+                            center: myLatlng,
+                        });
+                        // Create the initial InfoWindow.
+                        let infoWindow = new google.maps.InfoWindow({
+                            content: "Click the map to get Lat/Lng!",
+                            position: myLatlng,
+                        });
+                        infoWindow.open(map);
+                        // Configure the click listener.
+                        map.addListener("click", (mapsMouseEvent) => {
+                            // Close the current InfoWindow.
+                            infoWindow.close();
+                            // Create a new InfoWindow.
+                            infoWindow = new google.maps.InfoWindow({
+                                position: mapsMouseEvent.latLng,
+                            });
+                            infoWindow.setContent(
+                                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                            );
+                            infoWindow.open(map);
+                        });
+                    }
+                </script>
+                <div id="map"></div>
+                <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbmLZgJDDWp1lLXfKICo9BoUlHt1ZdQ_s&callback=initMap&libraries=&v=weekly" async></script>
                 <div class="container-fluid">
                     <!-- Form Tambah Data Kos -->
-
                     <div class="card shadow mb-3 " style=" margin-left: auto; margin-right: auto; width: 550px">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Form Tambah Data Kost</h6>
@@ -30,9 +80,7 @@
 
                             <div class="form-group">
                                 <label class="small mb-1" for="long">Pilih Lokasi Anda</label>
-                                <div id="this_map">
-                                    this map
-                                </div>
+                                <div id="map" class="Map_lokasi" style="width: 100%; height:100%"></div>
                             </div>
 
                             <div class="form-group ">
@@ -81,43 +129,6 @@
                     </div>
 
                 </div>
-                <script>
-                    var map;
-
-                    function initMap() {
-                        console.log('init map');
-                        const myLatlng = {
-                            lat: -8.503,
-                            lng: 115.215
-                        };
-                        console.log('init map')
-                        const map = new google.maps.Map(document.getElementById("this_map"), {
-                            zoom: 8,
-                            center: myLatlng,
-                        });
-
-                        // Create the initial InfoWindow.
-                        let infoWindow = new google.maps.InfoWindow({
-                            content: "Click the map to get Lat/Lng!",
-                            position: myLatlng,
-                        });
-                        infoWindow.open(map);
-                        // Configure the click listener.
-                        map.addListener("click", (mapsMouseEvent) => {
-                            // Close the current InfoWindow.
-                            infoWindow.close();
-                            // Create a new InfoWindow.
-                            infoWindow = new google.maps.InfoWindow({
-                                position: mapsMouseEvent.latLng,
-                            });
-                            infoWindow.setContent(
-                                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-                            );
-                            infoWindow.open(map);
-                        });
-                    }
-                </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbmLZgJDDWp1lLXfKICo9BoUlHt1ZdQ_s&callback=initMap&libraries=&v=weekly" async></script>
 
                 <!-- /.container-fluid -->
                 <br>
