@@ -28,6 +28,16 @@
                                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                             );
                             infoWindow.open(map);
+
+                            console.log("init map");
+                            var input_lat = document.getElementById("map_lat");
+                            var input_lng = document.getElementById("map_long");
+
+                            var latlng_json = mapsMouseEvent.latLng.toJSON()
+                            console.log(latlng_json["lat"]);
+                            console.log(latlng_json["lng"]);
+                            input_lat.value = latlng_json["lat"];
+                            input_lng.value = latlng_json["lng"];
                         });
                     }
                 </script>
@@ -48,21 +58,21 @@
                             <div class="form-group ">
                                 <input type="hidden" name="namapemilik" class="form-control " id="namapemilik" value="<?= $admin['Nama'] ?>" required="">
                             </div>
-                            <label class="small mb-1" for="alamat">Alamat Rumah Kos</label>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label class="small mb-1" for="lat">Latitude : </label>
-                                    <input type="text" name="lat" class="form-control " id="lat" placeholder="Latitude" required="">
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="small mb-1" for="long">Longtitude :</label>
-                                    <input type="text" class="form-control" name="long" id="long" placeholder="Longtitude" required="">
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label class="small mb-1" for="long">Pilih Lokasi Anda</label>
                                 <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px"></div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label class="small mb-1" for="lat">Latitude : </label>
+                                    <input type="text" name="lat" class="form-control " id="map_lat" placeholder="Latitude" required="">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="small mb-1" for="long">Longtitude :</label>
+                                    <input type="text" class="form-control" name="long" id="map_long" placeholder="Longtitude" required="">
+                                </div>
                             </div>
 
                             <div class="form-group ">
