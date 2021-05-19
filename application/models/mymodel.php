@@ -173,6 +173,19 @@ class mymodel extends CI_Model
         $this->db->delete('transaksi');
     }
 
+
+
+    // Data Kamar Kos Model (Admin)
+
+    function GettAllDatakamarkos()
+    {
+        $query = $this->db->query("SELECT * FROM `kamarkos`");
+        return $query->result();
+    }
+
+
+
+
     // Riwayat Transaksi model (SuperAdmin)
 
     function riwayattransaksi()
@@ -375,7 +388,7 @@ class mymodel extends CI_Model
 
     // Data Kamar Kos Model (Admin)
 
-    function GettAllDatakamarkos()
+    function GettDatakamarkosadmin()
     {
         $this->db->where('kamarkos.Namapemilik', $this->session->userdata('Nama'));
         return $this->db->get('kamarkos')->result();

@@ -51,6 +51,19 @@ class Adminkos extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function edit_kos()
+    {
+        $data['tittle'] = 'Data Kos';
+        $data['admin'] = $this->db->get_where('admin', ['Username' => $this->session->userdata('Username')])->row_array();
+
+        $this->load->view('templates/header',  $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('adminkos/editkos', $data);
+        $this->load->view('templates/footer');
+    }
+
+
 
     public function tambahkamarkos()
     {
@@ -199,7 +212,7 @@ class Adminkos extends CI_Controller
         $data['admin'] = $this->db->get_where('admin', ['Username' =>
         $this->session->userdata('Username')])->row_array();
 
-        $data['datakamarkos'] = $this->mymodel->GettAllDatakamarkos();
+        $data['datakamarkos'] = $this->mymodel->GettDatakamarkosadmin();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

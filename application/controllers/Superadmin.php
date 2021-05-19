@@ -214,7 +214,41 @@ class superadmin extends CI_Controller
         redirect('superadmin/datapenyewa');
     }
 
+    // Controller untuk halaman Data Kamar Kos
 
+    public function datakamarkos()
+    {
+        $data['tittle'] = 'Data Kamar Kos';
+        $data['admin'] = $this->db->get_where('admin', ['Username' =>
+        $this->session->userdata('Username')])->row_array();
+
+        $data['datakamarkos'] = $this->mymodel->GettAllDatakamarkos();
+
+        $this->load->view('templates/header',  $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('superadmin/datakamarkos', $data);
+        $this->load->view('templates/footer');
+    }
+
+    function hapus_data_kamarkos($id)
+    {
+        $data = $this->mymodel->Datakamarkosid($id)->row();
+        $nama1 = 'androidAPI/Image/FotoKamarKos/' . $data->Foto;
+
+        if (
+            is_readable($nama1) && unlink($nama1)
+        ) {
+            $this->mymodel->hapus_data_kamar($id);
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+            Data Kamar Kos berhasil dihapus </div>');
+            redirect('superadmin/datakamarkos');
+        } else {
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-danger" role="alert">
+            Data Kamar Kos gagal dihapus </div>');
+            redirect('superadmin/datakamarkos');
+        }
+    }
 
 
     // Controller untuk halaman Data Transaksi
@@ -244,6 +278,7 @@ class superadmin extends CI_Controller
     }
     public function hapus_datatransaksi($id)
     {
+
         $data = $this->mymodel->datatransaksiid($id)->row();
         $nama1 = 'androidAPI/Image/BuktiPembayaran/' . $data->Buktipembayaran;
 

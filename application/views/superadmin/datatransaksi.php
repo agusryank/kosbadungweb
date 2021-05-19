@@ -75,13 +75,19 @@
 
             </div>
         </div>
-
     </div>
+
     <!-- /.container-fluid -->
 
 </div>
-<!-- End of Main Content -->
 </div>
+
+
+
+
+
+
+
 
 
 <!-- Modal untuk Konfirmasi Delete Data -->

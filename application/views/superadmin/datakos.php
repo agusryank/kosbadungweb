@@ -21,9 +21,7 @@
                                            <th>Nama Pemilik Kos</th>
                                            <th>Latitude</th>
                                            <th>Longtitude</th>
-                                           <th>Jumlah Kamar</th>
                                            <th>Foto</th>
-                                           <th>Harga perbulan</th>
                                            <th>Deskripsi</th>
                                            <th>Kecamatan</th>
                                            <th>Aksi</th>

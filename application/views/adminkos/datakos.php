@@ -65,11 +65,10 @@
                                             </a>
                                         </p>
                                         <P>
-                                            <button class="badge badge-primary" data-toggle="modal" data-target="#editmodal<?php echo $m->id; ?>">
-                                                <span class="text">Edit Data Kos</span> </button>
-                                            <!-- <a href="<?php echo base_url() ?>adminkos/editkos/<?php echo $m->id; ?>" type="button" class="badge badge-primary">
+                                            <!-- <button class="badge badge-primary" data-toggle="modal" data-target="#editmodal"> -->
+                                            <a href="<?php echo base_url() ?>adminkos/edit_kos/<?php echo $m->id; ?>" type="button" class="badge badge-primary">
                                                 Edit Data Kos
-                                            </a> -->
+                                            </a>
                                         </P>
                                         <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#konfirmdelete">
                                             Delete
