@@ -194,8 +194,10 @@ class Adminkos extends CI_Controller
 
     public function Edit_data_kamarkos()
     {
+        //config data untuk upload
         $config['upload_path']          = 'androidAPI/Image/FotoKamarKos/';
         $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        //ganti nama file
         $name = basename($_FILES["userfile"]["name"]);
         $new_name = time() . "-" . rand(10, 99) . "-" . $name;
         $config['file_name'] = $new_name;
@@ -221,15 +223,13 @@ class Adminkos extends CI_Controller
             Data Kamar Kos Berhasil Dirubah! </div>');
             redirect('adminkos/datakamarkos');
         } else {
+            //delete data lama
             $target_unlink = $config["upload_path"] . $this->input->post('old_userfile');
             unlink($target_unlink);
-            $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
-            $file_name = $upload_data['file_name'];
 
-            // $name = basename($_FILES["userfile"]["name"]);
-            // $new_name = time() . "-" . rand(10, 99) . "-" . $name;
-            // $target_file = $config["upload_path"] . $new_name;
-            // move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
+            //ambil nama file yang di upload
+            $upload_data = $this->upload->data();
+            $file_name = $upload_data['file_name'];
 
             $data = array(
                 'Namakamar' => $this->input->post('namakamar'),
