@@ -63,8 +63,6 @@ class Adminkos extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-
-
     public function tambahkamarkos()
     {
         $data['tittle'] = 'Data Kamar Kos';
@@ -80,53 +78,6 @@ class Adminkos extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // public function proses_tambah_data()
-    // {
-
-    //     $config['upload_path']          = 'androidAPI/Image/FotoKos/';
-    //     $config['allowed_types']        = 'gif|jpg|png';
-    //     $config['max_size']             = 10000;
-    //     $config['max_width']            = 10000;
-    //     $config['max_height']           = 10000;
-
-    //     $this->load->library('upload', $config);
-
-
-    //     if (!$this->upload->do_upload('userfile')) {
-    //         echo "Gagal Tambah";
-    //     } else {
-
-    //         $foto1 = $this->upload->data();
-    //         $foto1 = $foto1['file_name'];
-    //         $Namakos = $this->input->post('namakos', true);
-    //         $Namapemilik = $this->input->post('namapemilik', true);
-    //         $Latitude = $this->input->post('lat', true);
-    //         $Longtitude = $this->input->post('long', true);
-    //         $Jumlahkamar = $this->input->post('jmlkamar', true);
-    //         $Harga = $this->input->post('harga', true);
-    //         $Deskripsi = $this->input->post('deskripsi', true);
-    //         $Kecamatan = $this->input->post('kecamatan', true);
-    //         $Aktif = 1;
-    //         $Status = ('Pending');
-
-    //         $data = array(
-    //             'Namakos' => $Namakos,
-    //             'Namapemilik' => $Namapemilik,
-    //             'Latitude' => $Latitude,
-    //             'Longtitude' => $Longtitude,
-    //             'Jumlahkamar' => $Jumlahkamar,
-    //             'Harga' => $Harga,
-    //             'Deskripsi' => $Deskripsi,
-    //             'Kecamatan' => $Kecamatan,
-    //             'Aktif' => $Aktif,
-    //             'Status' => $Status,
-    //         );
-    //         $this->db->insert('kos', $data);
-    //         $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
-    //         Data kos berhasil ditambahkan, Mohon menunggu data untuk diverivikasi. ! </div>');
-    //         redirect('adminkos/datakos');
-    //     }
-    // }
 
     public function proses_tambah_kos()
     {
@@ -238,32 +189,57 @@ class Adminkos extends CI_Controller
 
     public function Edit_data_kamarkos()
     {
-        $target_dir = "androidAPI/Image/FotoKamarKos/";
-        $name = basename($_FILES["userfile"]["name"]);
-        $new_name = time() . "-" . rand(10, 99) . "-" . $name;
-        $target_file = $target_dir . $new_name;
-        move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
+        $config['upload_path']          = 'androidAPI/Image/FotoKamarKos/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
 
-        $target_unlink = $target_dir . $this->input->post('old_userfile');
-        unlink($target_unlink);
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
 
-        $data = array(
-            'Namakamar' => $this->input->post('namakamar'),
-            'id_kos' => $this->input->post('id_kos'),
-            'Namakos' => $this->input->post('namakos'),
-            'id_pemilik' => $this->input->post('id_pemilik'),
-            'Namapemilik' => $this->input->post('namapemilik'),
-            'Fasilitaskamar' => $this->input->post('fasilitas'),
-            'Jumlahkamar' => $this->input->post('jmlkamar'),
-            'Hargakamar' => $this->input->post('harga'),
-            'Foto' => $new_name,
-            'Aktif' => 1,
-        );
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('kamarkos', $data);
-        $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
-            Data Kamar Kos Berhasil Ditambahkan ! </div>');
-        redirect('adminkos/datakamarkos');
+        if (!$this->upload->do_upload('userfile')) {
+            $data = array(
+                'Namakamar' => $this->input->post('namakamar'),
+                'id_kos' => $this->input->post('id_kos'),
+                'Namakos' => $this->input->post('namakos'),
+                'id_pemilik' => $this->input->post('id_pemilik'),
+                'Namapemilik' => $this->input->post('namapemilik'),
+                'Fasilitaskamar' => $this->input->post('fasilitas'),
+                'Jumlahkamar' => $this->input->post('jmlkamar'),
+                'Hargakamar' => $this->input->post('harga'),
+                'Aktif' => 1,
+            );
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('kamarkos', $data);
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+            Data Kamar Kos Berhasil Dirubah! </div>');
+            redirect('adminkos/datakamarkos');
+        } else {
+
+            $target_unlink = $config["upload_path"] . $this->input->post('old_userfile');
+            unlink($target_unlink);
+
+            $name = basename($_FILES["userfile"]["name"]);
+            $new_name = time() . "-" . rand(10, 99) . "-" . $name;
+            $target_file = $config["upload_path"] . $new_name;
+            move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
+
+            $data = array(
+                'Namakamar' => $this->input->post('namakamar'),
+                'id_kos' => $this->input->post('id_kos'),
+                'Namakos' => $this->input->post('namakos'),
+                'id_pemilik' => $this->input->post('id_pemilik'),
+                'Namapemilik' => $this->input->post('namapemilik'),
+                'Fasilitaskamar' => $this->input->post('fasilitas'),
+                'Jumlahkamar' => $this->input->post('jmlkamar'),
+                'Hargakamar' => $this->input->post('harga'),
+                'Foto' => $new_name,
+                'Aktif' => 1,
+            );
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('kamarkos', $data);
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+            Data Kamar Kos Berhasil Dirubah! </div>');
+            redirect('adminkos/datakamarkos');
+        }
     }
 
 

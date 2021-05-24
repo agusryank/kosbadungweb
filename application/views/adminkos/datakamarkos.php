@@ -34,6 +34,7 @@
                             <th>Fasilitas Kamar</th>
                             <th>Jumlah Kamar</th>
                             <th>Harga</th>
+                            <th>Tersedia</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -51,6 +52,14 @@
                                 <td><?= $m->Fasilitaskamar; ?></td>
                                 <td><?= $m->Jumlahkamar; ?></td>
                                 <td><?= $m->Hargakamar; ?> </td>
+                                <td><?php
+                                    if ($m->Aktif == '1') {
+                                        echo '<div class="badge badge-success">Aktif</div>';
+                                    } else {
+                                        echo '<div class="badge badge-primary">Tidak Aktif</div>';
+                                    }
+                                    ?>
+                                </td>
                                 <td>
                                     <P>
                                         <button class="badge badge-primary" data-toggle="modal" data-target="#editmodal<?php echo $m->id; ?>">
@@ -112,7 +121,7 @@
                     <div class="form-group ">
                         <input class="form-control" value="<?= $m->Foto; ?>" type="hidden" name="old_userfile" id="foto" />
                         <label class="small mb-1" for="foto">Foto Kamar</label>
-                        <input class="form-control" type="file" name="userfile" id="foto" required="" />
+                        <input class="form-control" type="file" name="userfile" id="foto" />
                         <img size="20%" class="img-fluid" src="<?= base_url('androidAPI/Image/FotoKamarKos/' . $m->Foto); ?> ">
                     </div>
                     <div class="form-group">

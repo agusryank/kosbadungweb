@@ -32,6 +32,7 @@
                                 <th>Deskripsi</th>
                                 <th>Kecamatan</th>
                                 <th>Status</th>
+                                <th>Tersedia</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -53,11 +54,20 @@
                                     <td><?= $m->Kecamatan; ?></td>
                                     <td><?php
                                         if ($m->Status == 'Sukses') {
-                                            echo '<div class="badge badge-success">Sukses verivikasi</div>';
+                                            echo '<div class="badge badge-success">Sukses verifikasi</div>';
                                         } else {
-                                            echo '<div class="badge badge-primary">Proses Verivikasi';
+                                            echo '<div class="badge badge-primary">Proses Verifikasi</div>';
                                         }
-                                        ?></td>
+                                        ?>
+                                    </td>
+                                    <td><?php
+                                        if ($m->Aktif == '1') {
+                                            echo '<div class="badge badge-success">Aktif</div>';
+                                        } else {
+                                            echo '<div class="badge badge-primary">Tidak Aktif</div>';
+                                        }
+                                        ?>
+                                    </td>
                                     <td>
                                         <p>
                                             <a href="<?php echo base_url() ?>adminkos/tambahkamarkos/<?php echo $m->id; ?>" type="button" class="badge badge-primary">

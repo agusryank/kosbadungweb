@@ -263,6 +263,7 @@ class mymodel extends CI_Model
             "Deskripsi" => $this->input->post('deskripsi'),
             "Kecamatan" => $this->input->post('kecamatan'),
             "Status" => 'Pending',
+            "Aktif" => '1',
         ];
 
         $this->db->insert('kos', $data);
@@ -299,7 +300,7 @@ class mymodel extends CI_Model
         $new_name4 = time() . "-" . rand(10, 99) . "-" . $nameFoto4;
         $target_file = $target_dir . $new_name4;
         move_uploaded_file($_FILES["foto4"]["tmp_name"], $target_file);
-        # code...
+
 
         $data = [
             "foto1" => $new_name1,
