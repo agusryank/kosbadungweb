@@ -187,15 +187,25 @@ class Adminkos extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function Edit_data_kos()
+    {
+        # code...
+    }
+
     public function Edit_data_kamarkos()
     {
+        //config data untuk upload
         $config['upload_path']          = 'androidAPI/Image/FotoKamarKos/';
         $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        //ganti nama file
+        $name = basename($_FILES["userfile"]["name"]);
+        $new_name = time() . "-" . rand(10, 99) . "-" . $name;
+        $config['file_name'] = $new_name;
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
 
-        if (!$this->upload->do_upload('userfile')) {
+        if (!$this->upload->do_upload()) {
             $data = array(
                 'Namakamar' => $this->input->post('namakamar'),
                 'id_kos' => $this->input->post('id_kos'),
@@ -207,20 +217,20 @@ class Adminkos extends CI_Controller
                 'Hargakamar' => $this->input->post('harga'),
                 'Aktif' => $this->input->post('aktif'),
             );
+
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('kamarkos', $data);
             $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
             Data Kamar Kos Berhasil Dirubah! </div>');
             redirect('adminkos/datakamarkos');
         } else {
-
+            //delete data lama
             $target_unlink = $config["upload_path"] . $this->input->post('old_userfile');
             unlink($target_unlink);
 
-            $name = basename($_FILES["userfile"]["name"]);
-            $new_name = time() . "-" . rand(10, 99) . "-" . $name;
-            $target_file = $config["upload_path"] . $new_name;
-            move_uploaded_file($_FILES["userfile"]["tmp_name"], $target_file);
+            //ambil nama file yang di upload
+            $upload_data = $this->upload->data();
+            $file_name = $upload_data['file_name'];
 
             $data = array(
                 'Namakamar' => $this->input->post('namakamar'),
@@ -231,7 +241,7 @@ class Adminkos extends CI_Controller
                 'Fasilitaskamar' => $this->input->post('fasilitas'),
                 'Jumlahkamar' => $this->input->post('jmlkamar'),
                 'Hargakamar' => $this->input->post('harga'),
-                'Foto' => $new_name,
+                'Foto' => $file_name,
                 'Aktif' => $this->input->post('aktif'),
             );
             $this->db->where('id', $this->input->post('id'));
