@@ -2,10 +2,11 @@
 
     include('koneksi.php');
 
-    $id = $_POST['id'];
+    $kecamatan = $_POST['kecamatan'];
 
-    $query = "SELECT * FROM `kamarkos` where `id_kos` = '$id'  AND `Aktif` ='1' ";
-
+    $query = "SELECT * FROM `kos` where `Kecamatan` = '$kecamatan' AND `Status` = 'Sukses'";
+    
+    
     $result = mysqli_query($koneksi,$query);
     $arraydata = array();
 

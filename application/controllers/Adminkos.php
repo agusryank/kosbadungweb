@@ -205,7 +205,7 @@ class Adminkos extends CI_Controller
                 'Fasilitaskamar' => $this->input->post('fasilitas'),
                 'Jumlahkamar' => $this->input->post('jmlkamar'),
                 'Hargakamar' => $this->input->post('harga'),
-                'Aktif' => 1,
+                'Aktif' => $this->input->post('aktif'),
             );
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('kamarkos', $data);
@@ -232,7 +232,7 @@ class Adminkos extends CI_Controller
                 'Jumlahkamar' => $this->input->post('jmlkamar'),
                 'Hargakamar' => $this->input->post('harga'),
                 'Foto' => $new_name,
-                'Aktif' => 1,
+                'Aktif' => $this->input->post('aktif'),
             );
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('kamarkos', $data);

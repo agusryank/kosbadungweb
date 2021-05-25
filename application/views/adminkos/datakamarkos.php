@@ -56,7 +56,7 @@
                                     if ($m->Aktif == '1') {
                                         echo '<div class="badge badge-success">Aktif</div>';
                                     } else {
-                                        echo '<div class="badge badge-primary">Tidak Aktif</div>';
+                                        echo '<div class="badge badge-danger">Tidak Aktif</div>';
                                     }
                                     ?>
                                 </td>
@@ -137,6 +137,22 @@
                     <div class="form-group ">
                         <label class="small mb-1" for="harga">Harga Kamar / Bulan :</label>
                         <input type="text" class="form-control " name="harga" id="harga" value="<?= $m->Hargakamar; ?>" placeholder="Harga Sewa" required="">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label class="small mb-1" for="aktif">Kos Masih Tersedia Atau Tidak ?:</label>
+                            <select name="aktif" class="form-control" id="aktif" required="">
+                                <option selected><?php
+                                                    if ($m->Aktif == '1') {
+                                                        echo '<div class="badge badge-success">Tersedia</div>';
+                                                    } else {
+                                                        echo '<div class="badge badge-primary">Tidak Tersedia</div>';
+                                                    }
+                                                    ?></option>
+                                <option value="1">Tersedia</option>
+                                <option value="0">Tidak Tersedia</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer" style="text-align: right;">
