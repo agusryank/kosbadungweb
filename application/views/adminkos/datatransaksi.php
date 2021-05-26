@@ -30,7 +30,7 @@
                         <?php $i = 1; ?>
                         <?php foreach ($datatransaksi as $m) { ?>
                             <tr>
-                                <td><?= $i; ?> </td>
+                                <td><?= $i++; ?> </td>
                                 <td> <?= $m->Namakos; ?> </td>
                                 <td><?= $m->Namapemilik; ?> </td>
                                 <td><?= $m->Namauser; ?> </td>
