@@ -272,34 +272,44 @@ class mymodel extends CI_Model
     function proses_edit_datakos()
     {
         $target_dir = "androidAPI/Image/FotoKos/";
-        $target_unlink = $target_dir . $this->input->post('oldFoto1');
-        unlink($target_unlink);
-        $target_unlink = $target_dir . $this->input->post('oldFoto2');
-        unlink($target_unlink);
-        $target_unlink = $target_dir . $this->input->post('oldFoto3');
-        unlink($target_unlink);
-        $target_unlink = $target_dir . $this->input->post('oldFoto4');
-        unlink($target_unlink);
+        if (isset($_FILES['foto1']) && isset($_FILES['foto2']) && isset($_FILES['foto3']) && isset($_FILES['foto4'])) {
+            # code...
+            $target_unlink = $target_dir . $this->input->post('oldFoto1');
+            unlink($target_unlink);
+            $target_unlink = $target_dir . $this->input->post('oldFoto2');
+            unlink($target_unlink);
+            $target_unlink = $target_dir . $this->input->post('oldFoto3');
+            unlink($target_unlink);
+            $target_unlink = $target_dir . $this->input->post('oldFoto4');
+            unlink($target_unlink);
 
-        $nameFoto1 = basename($_FILES["foto1"]["name"]);
-        $new_name1 = time() . "-" . rand(10, 99) . "-" . $nameFoto1;
-        $target_file = $target_dir . $new_name1;
-        move_uploaded_file($_FILES["foto1"]["tmp_name"], $target_file);
+            $nameFoto1 = basename($_FILES["foto1"]["name"]);
+            $new_name1 = time() . "-" . rand(10, 99) . "-" . $nameFoto1;
+            $target_file = $target_dir . $new_name1;
+            move_uploaded_file($_FILES["foto1"]["tmp_name"], $target_file);
 
-        $nameFoto2 = basename($_FILES["foto2"]["name"]);
-        $new_name2 = time() . "-" . rand(10, 99) . "-" . $nameFoto2;
-        $target_file = $target_dir . $new_name2;
-        move_uploaded_file($_FILES["foto2"]["tmp_name"], $target_file);
+            $nameFoto2 = basename($_FILES["foto2"]["name"]);
+            $new_name2 = time() . "-" . rand(10, 99) . "-" . $nameFoto2;
+            $target_file = $target_dir . $new_name2;
+            move_uploaded_file($_FILES["foto2"]["tmp_name"], $target_file);
 
-        $nameFoto3 = basename($_FILES["foto3"]["name"]);
-        $new_name3 = time() . "-" . rand(10, 99) . "-" . $nameFoto3;
-        $target_file = $target_dir . $new_name3;
-        move_uploaded_file($_FILES["foto3"]["tmp_name"], $target_file);
+            $nameFoto3 = basename($_FILES["foto3"]["name"]);
+            $new_name3 = time() . "-" . rand(10, 99) . "-" . $nameFoto3;
+            $target_file = $target_dir . $new_name3;
+            move_uploaded_file($_FILES["foto3"]["tmp_name"], $target_file);
 
-        $nameFoto4 = basename($_FILES["foto4"]["name"]);
-        $new_name4 = time() . "-" . rand(10, 99) . "-" . $nameFoto4;
-        $target_file = $target_dir . $new_name4;
-        move_uploaded_file($_FILES["foto4"]["tmp_name"], $target_file);
+            $nameFoto4 = basename($_FILES["foto4"]["name"]);
+            $new_name4 = time() . "-" . rand(10, 99) . "-" . $nameFoto4;
+            $target_file = $target_dir . $new_name4;
+            move_uploaded_file($_FILES["foto4"]["tmp_name"], $target_file);
+        } else {
+            $new_name1 = $this->input->post('oldfoto1');
+            $new_name2 = $this->input->post('oldfoto2');
+            $new_name3 = $this->input->post('oldfoto3');
+            $new_name4 = $this->input->post('oldfoto4');
+        }
+
+
 
 
         $data = [
@@ -316,7 +326,7 @@ class mymodel extends CI_Model
             "Status" => 'Pending',
         ];
 
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('id', $this->input->post('id_Kos'));
         $this->db->update('kos', $data);
         $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
         Data Telah Berhasil Diedit!

@@ -51,11 +51,11 @@ class Adminkos extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function edit_kos()
+    public function edit_kos($id)
     {
         $data['tittle'] = 'Data Kos';
         $data['admin'] = $this->db->get_where('admin', ['Username' => $this->session->userdata('Username')])->row_array();
-
+        $data['data_kos'] = $this->mymodel->GetDatakosid($id);
         $this->load->view('templates/header',  $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -187,13 +187,9 @@ class Adminkos extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function Edit_data_kos()
-    {
-        # code...
-    }
-
     public function Edit_data_kamarkos()
     {
+
         //config data untuk upload
         $config['upload_path']          = 'androidAPI/Image/FotoKamarKos/';
         $config['allowed_types']        = 'gif|jpg|png|jpeg';
@@ -204,6 +200,7 @@ class Adminkos extends CI_Controller
 
         $this->load->library('upload', $config);
         $this->upload->initialize($config);
+
 
         if (!$this->upload->do_upload()) {
             $data = array(
