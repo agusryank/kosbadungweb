@@ -56,7 +56,7 @@
                                     if ($m->Aktif == '1') {
                                         echo '<div class="badge badge-success">Aktif</div>';
                                     } else {
-                                        echo '<div class="badge badge-primary">Tidak Aktif</div>';
+                                        echo '<div class="badge badge-danger">Tidak Aktif</div>';
                                     }
                                     ?>
                                 </td>
@@ -133,11 +133,29 @@
                             <label class="small mb-1" for="jmlkamar">Jumlah Kamar Yang Tersedia:</label>
                             <input type="number" name="jmlkamar" min="1" max="100" class="form-control " value="<?= $m->Jumlahkamar; ?>" id="jmlkamar" placeholder="Kamar Tersedia" required="">
                         </div>
+
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label class="small mb-1" for="aktif">Kamar Kos Tersedia ?</label>
+                            <select name="aktif" class="form-control" id="aktif" required="">
+                                <option selected value="<?= $m->Aktif; ?>">
+                                    <?php
+                                    if ($m->Aktif == '1') {
+                                        echo '<div class="badge badge-success">Tersedia</div>';
+                                    } else {
+                                        echo '<div class="badge badge-primary">Tidak Tersedia</div>';
+                                    }
+                                    ?></option>
+                                <option value="1">Tersedia</option>
+                                <option value="0">Tidak Tersedia</option>
+                            </select>
+
+                        </div>
                     </div>
                     <div class="form-group ">
                         <label class="small mb-1" for="harga">Harga Kamar / Bulan :</label>
                         <input type="text" class="form-control " name="harga" id="harga" value="<?= $m->Hargakamar; ?>" placeholder="Harga Sewa" required="">
                     </div>
+
                 </div>
                 <div class="card-footer" style="text-align: right;">
                     <a href="<?php echo base_url() ?>adminkos/datakamarkos" class="btn btn-secondary">Kembali</a>
