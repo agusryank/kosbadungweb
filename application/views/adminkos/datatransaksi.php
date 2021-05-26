@@ -37,7 +37,7 @@
                                 <td><?= $m->Namakamar; ?> </td>
                                 <td>
                                     <?php
-                                    if (empty($m->Buktipembayaran)) {
+                                    if ($m->Buktipembayaran == 'Pending') {
                                         echo "Bukti pembayaran belum di upload.";
                                     } else {
                                         echo "<a href=";
