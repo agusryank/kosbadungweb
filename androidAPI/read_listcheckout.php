@@ -2,7 +2,7 @@
 
     include('koneksi.php');
 
-    $query = "SELECT * FROM `transaksi` where `Buktipembayaran` = 'Pending' AND `Status` = 'None'";
+    $query = "SELECT * FROM `transaksi` where `Buktipembayaran` = 'Pending' AND `Status` = 'Pending'";
     
     
     $result = mysqli_query($koneksi,$query);
