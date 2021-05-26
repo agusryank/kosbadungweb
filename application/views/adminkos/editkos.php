@@ -46,28 +46,28 @@
 
                                 <div class="form-group ">
                                     <label class="small mb-1" for="foto1">Foto 1:</label>
-                                    <input type="hidden" class="form-control" value="<?php echo $m->foto1; ?>" id="foto1" name="oldfoto1" size="20" required="">
+                                    <input type="hidden" class="form-control" value="<?php echo $m->foto1; ?>" id="foto1" name="oldfoto1">
 
                                     <input type="file" class="form-control" id="foto1" name="foto1" size="20">
                                     <img size="20%" class="img-fluid" src="<?php echo  base_url('androidAPI/Image/FotoKos/' . $m->foto1); ?> ">
                                 </div>
                                 <div class="form-group ">
                                     <label class="small mb-1" for="foto2">Foto 2:</label>
-                                    <input type="hidden" class="form-control" value="<?php echo $m->foto2; ?>" id="foto2" name="oldfoto2" size="20" required="">
+                                    <input type="hidden" class="form-control" value="<?php echo $m->foto2; ?>" id="foto2" name="oldfoto2">
 
                                     <input type="file" class="form-control" id="foto2" name="foto2" size="20">
                                     <img size="20%" class="img-fluid" src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto2); ?> ">
                                 </div>
                                 <div class="form-group ">
                                     <label class="small mb-1" for="foto3">Foto 3:</label>
-                                    <input type="hidden" class="form-control" value="<?php echo $m->foto3; ?>" id="foto3" name="oldfoto3" size="20" required="">
+                                    <input type="hidden" class="form-control" value="<?php echo $m->foto3; ?>" id="foto3" name="oldfoto3">
 
                                     <input type="file" class="form-control" id="foto3" name="foto3" size="20">
                                     <img size="20%" class="img-fluid" src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto3); ?> ">
                                 </div>
                                 <div class="form-group ">
                                     <label class="small mb-1" for="foto4">Foto 4:</label>
-                                    <input type="hidden" class="form-control" value="<?php echo $m->foto4; ?>" id="foto4" name="oldfoto4" size="20" required="">
+                                    <input type="hidden" class="form-control" value="<?php echo $m->foto4; ?>" id="foto4" name="oldfoto4">
 
                                     <input type="file" class="form-control" id="foto4" name="foto4" size="20">
                                     <img size="20%" class="img-fluid" src="<?= base_url('androidAPI/Image/FotoKos/' . $m->foto4); ?> ">

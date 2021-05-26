@@ -310,8 +310,6 @@ class mymodel extends CI_Model
         }
 
 
-
-
         $data = [
             "foto1" => $new_name1,
             "foto2" => $new_name2,
