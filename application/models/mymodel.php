@@ -272,15 +272,15 @@ class mymodel extends CI_Model
     function proses_edit_datakos()
     {
         $target_dir = "androidAPI/Image/FotoKos/";
-        if (isset($_FILES['foto1']) && isset($_FILES['foto2']) && isset($_FILES['foto3']) && isset($_FILES['foto4'])) {
+        if ($_FILES['foto1']["error"] == 0 && $_FILES['foto2']["error"] == 0 && $_FILES['foto3']["error"] == 0 && $_FILES['foto4']["error"] == 0) {
             # code...
-            $target_unlink = $target_dir . $this->input->post('oldFoto1');
+            $target_unlink = $target_dir . $this->input->post('oldfoto1');
             unlink($target_unlink);
-            $target_unlink = $target_dir . $this->input->post('oldFoto2');
+            $target_unlink = $target_dir . $this->input->post('oldfoto2');
             unlink($target_unlink);
-            $target_unlink = $target_dir . $this->input->post('oldFoto3');
+            $target_unlink = $target_dir . $this->input->post('oldfoto3');
             unlink($target_unlink);
-            $target_unlink = $target_dir . $this->input->post('oldFoto4');
+            $target_unlink = $target_dir . $this->input->post('oldfoto4');
             unlink($target_unlink);
 
             $nameFoto1 = basename($_FILES["foto1"]["name"]);
@@ -302,27 +302,31 @@ class mymodel extends CI_Model
             $new_name4 = time() . "-" . rand(10, 99) . "-" . $nameFoto4;
             $target_file = $target_dir . $new_name4;
             move_uploaded_file($_FILES["foto4"]["tmp_name"], $target_file);
+
+            $data = [
+                "foto1" => $new_name1,
+                "foto2" => $new_name2,
+                "foto3" => $new_name3,
+                "foto4" => $new_name4,
+                "Namakos" => $this->input->post('namakos'),
+                "Namapemilik" => $this->input->post('namapemilik'),
+                "Latitude" => $this->input->post('lat'),
+                "Longtitude" => $this->input->post('long'),
+                "Deskripsi" => $this->input->post('deskripsi'),
+                "Kecamatan" => $this->input->post('kecamatan'),
+                "Status" => 'Pending',
+            ];
         } else {
-            $new_name1 = $this->input->post('oldfoto1');
-            $new_name2 = $this->input->post('oldfoto2');
-            $new_name3 = $this->input->post('oldfoto3');
-            $new_name4 = $this->input->post('oldfoto4');
+            $data = [
+                "Namakos" => $this->input->post('namakos'),
+                "Namapemilik" => $this->input->post('namapemilik'),
+                "Latitude" => $this->input->post('lat'),
+                "Longtitude" => $this->input->post('long'),
+                "Deskripsi" => $this->input->post('deskripsi'),
+                "Kecamatan" => $this->input->post('kecamatan'),
+                "Status" => 'Pending',
+            ];
         }
-
-
-        $data = [
-            "foto1" => $new_name1,
-            "foto2" => $new_name2,
-            "foto3" => $new_name3,
-            "foto4" => $new_name4,
-            "Namakos" => $this->input->post('namakos'),
-            "Namapemilik" => $this->input->post('namapemilik'),
-            "Latitude" => $this->input->post('lat'),
-            "Longtitude" => $this->input->post('long'),
-            "Deskripsi" => $this->input->post('deskripsi'),
-            "Kecamatan" => $this->input->post('kecamatan'),
-            "Status" => 'Pending',
-        ];
 
         $this->db->where('id', $this->input->post('id_Kos'));
         $this->db->update('kos', $data);
