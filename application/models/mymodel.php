@@ -319,7 +319,7 @@ class mymodel extends CI_Model
             $target_file = $target_dir . $new_name4;
             move_uploaded_file($_FILES["foto4"]["tmp_name"], $target_file);
         } else {
-            $new_name4 = $this->input->post('oldfoto3');
+            $new_name4 = $this->input->post('oldfoto4');
         }
 
         $data = [
