@@ -108,8 +108,7 @@ class superadmin extends CI_Controller
 
     public function hapus_kos($id)
     {
-        $this->mymodel->hapus_kos($id);
-        $data = $this->mymodel->Getbyid($id)->row();
+        $data = $this->mymodel->datahapusid($id)->row();
         $nama1 = 'androidAPI/Image/FotoKos/' . $data->foto1;
         $nama2 = 'androidAPI/Image/FotoKos/' . $data->foto2;
         $nama3 = 'androidAPI/Image/FotoKos/' . $data->foto3;
@@ -140,7 +139,7 @@ class superadmin extends CI_Controller
 
     public function hapus_datakos($id)
     {
-        $data = $this->mymodel->Getbyid($id)->row();
+        $data = $this->mymodel->datahapusid($id)->row();
         $nama1 = 'androidAPI/Image/FotoKos/' . $data->foto1;
         $nama2 = 'androidAPI/Image/FotoKos/' . $data->foto2;
         $nama3 = 'androidAPI/Image/FotoKos/' . $data->foto3;
