@@ -10,7 +10,7 @@
 
                     <!-- Form Tambah Data Kos -->
 
-                    <div class="card shadow mb-3 " style=" margin-left: auto; margin-right: auto; width: 550px">
+                    <div class="card shadow mb-3 ">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Form Edit Data Kos</h6>
                         </div>
@@ -80,8 +80,9 @@
                                             <option value="Kuta Selatan">Kuta Selatan</option>
                                             <option value="Kuta Utara">Kuta Utara</option>
                                             <option value="Kuta">Kuta</option>
-                                            <option value="Kuta Tengah">Kuta Tengah</option>
+                                            <option value="Kuta Tengah">Mengwi</option>
                                             <option value="Petang">Petang</option>
+                                            <option value="Petang">Abiansemal</option>
                                         </select>
                                     </div>
                                 </div>

@@ -38,6 +38,7 @@
                             console.log(latlng_json["lng"]);
                             input_lat.value = latlng_json["lat"];
                             input_lng.value = latlng_json["lng"];
+
                         });
                     }
                 </script>
@@ -45,7 +46,7 @@
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbmLZgJDDWp1lLXfKICo9BoUlHt1ZdQ_s&callback=initMap&libraries=&v=weekly" async></script>
                 <div class="container-fluid">
                     <!-- Form Tambah Data Kos -->
-                    <div class="card shadow mb-3 " style=" margin-left: auto; margin-right: auto; width: 550px">
+                    <div class="card shadow mb-3 ">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Form Tambah Data Kost</h6>
                         </div>
@@ -63,7 +64,7 @@
                                 <label class="small mb-1" for="long">Lokasi Alamat Kos :</label>
                                 <p> <label class="small mb-1" for="long">Drag and drop pada maps, untuk menentukan alamat lokasi kos anda </label>
                                 </p>
-                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 300px "></div>
+                                <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 300px" required=""></div>
                             </div>
 
                             <div class="form-group row">

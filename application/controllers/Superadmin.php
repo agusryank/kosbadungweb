@@ -12,6 +12,8 @@ class superadmin extends CI_Controller
 
 
 
+
+
     //   Controller Untuk Dashboard
     public function index()
     {
@@ -79,6 +81,9 @@ class superadmin extends CI_Controller
 
 
 
+
+
+
     // Controller Untuk Halaman Informasi Data kos
     public function datakos()
     {
@@ -128,6 +133,7 @@ class superadmin extends CI_Controller
         }
     }
 
+
     public function datakosid()
     {
         $data['tittle'] = 'Data kos';
@@ -135,28 +141,6 @@ class superadmin extends CI_Controller
         $data['kosid'] = $this->mymodel->GetDatakosid($id);
         $this->load->view('templates/header',  $data);
         $this->load->view('superadmin/fotokos', $data);
-    }
-
-    public function hapus_datakos($id)
-    {
-        $data = $this->mymodel->datahapusid($id)->row();
-        $nama1 = 'androidAPI/Image/FotoKos/' . $data->foto1;
-        $nama2 = 'androidAPI/Image/FotoKos/' . $data->foto2;
-        $nama3 = 'androidAPI/Image/FotoKos/' . $data->foto3;
-        $nama4 = 'androidAPI/Image/FotoKos/' . $data->foto4;
-
-        if (
-            is_readable($nama1) && unlink($nama1) && is_readable($nama2) && unlink($nama2) && is_readable($nama3) && unlink($nama3) &&  is_readable($nama4) && unlink($nama4)
-        ) {
-            $this->mymodel->hapus_kos($id);
-            $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
-            Data kos berhasil dihapus </div>');
-            redirect('superadmin/datakosbadung');
-        } else {
-            $this->session->set_flashdata('Pesan', '<div class="alert alert-danger" role="alert">
-            Data kos gagal dihapus </div>');
-            redirect('superadmin/datakosbadung');
-        }
     }
 
 
@@ -177,6 +161,11 @@ class superadmin extends CI_Controller
         $this->load->view('superadmin/datakosbadung', $data);
         $this->load->view('templates/footer');
     }
+
+
+
+
+
 
     // Controller Untuk  halaman Data Penyewa
     public function datapenyewa()
@@ -212,6 +201,13 @@ class superadmin extends CI_Controller
       </div>');
         redirect('superadmin/datapenyewa');
     }
+
+
+
+
+
+
+
 
     // Controller untuk halaman Data Kamar Kos
 

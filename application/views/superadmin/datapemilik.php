@@ -37,7 +37,7 @@
                                     <td>
                                         <button class="badge badge-primary" data-toggle="modal" data-target="#editmodal<?php echo $m->id; ?>">
                                             <span class="text">Edit</span> </button>
-                                        <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#konfirmdelete">
+                                        <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#konfirmdelete<?php echo $m->id; ?>">
                                             Delete
                                         </button>
 
@@ -60,27 +60,29 @@
 
 
     <!-- Modal untuk Konfirmasi Delete Data -->
-
-    <div class="modal fade" id="konfirmdelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin ingin menghapus data ini ?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Pilih "Delete" untuk menghapus.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <a href="<?php echo base_url() ?>Superadmin/hapus_datapemilik/<?php echo $m->id; ?>" class="btn btn-danger">
-                        <span class="text">Delete</span> </a>
+    <?php $no = 0; ?>
+    <?php foreach ($adminkos as $m) : $no++ ?>
+        <div class="modal fade" id="konfirmdelete<?php echo $m->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Anda yakin ingin menghapus data ini ?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Pilih "Delete" untuk menghapus.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        <a href="<?php echo base_url() ?>Superadmin/hapus_datapemilik/<?php echo $m->id; ?>" class="btn btn-danger">
+                            <span class="text">Delete</span> </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    <?php endforeach ?>
 
     <!-- Akhir Modal -->
 
