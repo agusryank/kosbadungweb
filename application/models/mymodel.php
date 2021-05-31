@@ -212,6 +212,9 @@ class mymodel extends CI_Model
 
 
 
+
+
+
     // Data Kamar Kos Model (Admin)
 
     function GettAllDatakamarkos()
@@ -306,6 +309,7 @@ class mymodel extends CI_Model
         $this->db->insert('kos', $data);
     }
 
+
     function proses_edit_datakos()
     {
         $target_dir = "androidAPI/Image/FotoKos/";
@@ -388,21 +392,25 @@ class mymodel extends CI_Model
         return $this->db->get('kos')->result();
     }
 
+
     function Datakosid($id)
     {
         $query = $this->db->query("SELECT * FROM `kos` WHERE `id`='$id' ");
         return $query->result();
     }
 
+
     function Datakamarkosid($id)
     {
         return $this->db->get_where('kamarkos', array('id' => $id));
     }
 
+
     function datahapusid($id)
     {
         return $this->db->get_where('kos', array('id' => $id));
     }
+
 
     function hapus_data_kos($id)
     {
@@ -410,10 +418,27 @@ class mymodel extends CI_Model
         return $this->db->delete('kos');
     }
 
+
     function hapus_data_kamar($id)
     {
         $this->db->where('id', $id);
         return $this->db->delete('kamarkos');
+    }
+
+
+
+
+    // Data Kamar Kos Model (Admin)
+
+    function GettDatakamarkosadmin()
+    {
+        $this->db->where('kamarkos.Namapemilik', $this->session->userdata('Nama'));
+        return $this->db->get('kamarkos')->result();
+    }
+
+    function Tambah_data_kamar()
+    {
+        $this->db->insert('kamarkos');
     }
 
     function tambah_kamarkos()
@@ -442,20 +467,6 @@ class mymodel extends CI_Model
         redirect('adminkos/datakamarkos');
     }
 
-
-
-    // Data Kamar Kos Model (Admin)
-
-    function GettDatakamarkosadmin()
-    {
-        $this->db->where('kamarkos.Namapemilik', $this->session->userdata('Nama'));
-        return $this->db->get('kamarkos')->result();
-    }
-
-    function Tambah_data_kamar()
-    {
-        $this->db->insert('kamarkos');
-    }
 
 
     // Data Transaksi Model (Admin)

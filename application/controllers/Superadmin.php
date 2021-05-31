@@ -273,9 +273,10 @@ class superadmin extends CI_Controller
     }
     public function hapus_datatransaksi($id)
     {
-
+        $bukti = $this->mymodel->datatransaksiid($id)->row();
         $data = $this->mymodel->datatransaksiid($id)->row();
         $nama1 = 'androidAPI/Image/BuktiPembayaran/' . $data->Buktipembayaran;
+
 
         if (
             is_readable($nama1) && unlink($nama1)
