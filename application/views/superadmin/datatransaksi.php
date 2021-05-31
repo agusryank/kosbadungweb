@@ -64,8 +64,6 @@
                                     <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#konfirmdelete">
                                         Delete
                                     </button>
-
-
                                 </td>
                             </tr>
                             <?php $i++ ?>
@@ -134,6 +132,7 @@
                         <input type="hidden" name="id" value="<?php echo $m->id; ?>">
                         <div class="form-group">
                             <input type="hidden" name="status" value="Sukses" class="form-control">
+                            <input type="hidden" name="id_kamar" value="<?php echo $m->id_namakamar; ?>">
                         </div>
                 </div>
                 <div class="modal-footer">
