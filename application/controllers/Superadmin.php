@@ -271,12 +271,12 @@ class superadmin extends CI_Controller
       </div>');
         redirect('superadmin/datatransaksi');
     }
+
     public function hapus_datatransaksi($id)
     {
         $data = $this->mymodel->datatransaksiid($id)->row();
         $nama1 = 'androidAPI/Image/BuktiPembayaran/' . $data->Buktipembayaran;
-        print_r($nama1);
-        // die();
+
 
         if (
             is_readable($nama1) && unlink($nama1) && $data->Buktipembayaran != "Pending"
