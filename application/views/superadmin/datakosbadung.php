@@ -43,7 +43,14 @@
                                                </td>
                                                <td><?= $m->Deskripsi; ?></td>
                                                <td><?= $m->Kecamatan; ?></td>
-                                               <td><?= $m->Aktif; ?></td>
+                                               <td><?php
+                                                    if ($m->Aktif == '1') {
+                                                        echo '<div class="badge badge-success">Aktif</div>';
+                                                    } else {
+                                                        echo '<div class="badge badge-primary">Tidak Aktif</div>';
+                                                    }
+                                                    ?>
+                                               </td>
                                                <td>
                                                    <button type="button" class="badge badge-danger" data-toggle="modal" data-target="#konfirmdelete<?php echo $m->id; ?>">
                                                        Delete

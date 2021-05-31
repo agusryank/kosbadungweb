@@ -24,6 +24,7 @@
                                            <th>Foto</th>
                                            <th>Deskripsi</th>
                                            <th>Kecamatan</th>
+                                           <th>Status</th>
                                            <th>Aksi</th>
                                        </tr>
                                    </thead>
@@ -42,6 +43,14 @@
                                                </td>
                                                <td><?= $m->Deskripsi; ?></td>
                                                <td><?= $m->Kecamatan; ?></td>
+                                               <td><?php
+                                                    if ($m->Aktif == '1') {
+                                                        echo '<div class="badge badge-success">Aktif</div>';
+                                                    } else {
+                                                        echo '<div class="badge badge-primary">Tidak Aktif</div>';
+                                                    }
+                                                    ?>
+                                               </td>
                                                <td>
                                                    <P>
                                                        <button data-toggle="modal" data-target="#verivikasidata<?php echo $m->id; ?>" class="badge badge-success">
