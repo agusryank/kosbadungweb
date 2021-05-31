@@ -63,7 +63,6 @@
                                             echo "</span></div>";
                                         } ?>
                                 </td>
-
                             </tr>
                         <?php } ?>
                     </tbody>

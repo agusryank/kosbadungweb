@@ -165,6 +165,43 @@ class mymodel extends CI_Model
         ];
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('transaksi', $data);
+
+        $idKamarkos = $this->input->post('id_kamar');
+        $idkos = $this->input->post('id');
+
+        print_r($idKamarkos);
+        print_r("<br>");
+        print_r($idkos);
+        print_r("<br>");
+
+        $querykamarkos = $this->db->get_where('kamarkos', array('id' => $idKamarkos));
+        $queryTransaksi = $this->db->get_where('transaksi', array('id' => $idkos));
+        print_r($querykamarkos->result());
+        print_r("<br>");
+        print_r($queryTransaksi->result());
+
+        foreach ($querykamarkos->result() as $Kamarkos) {
+            # code...
+            $jumlahkamar = $Kamarkos->Jumlahkamar;
+        }
+
+        foreach ($queryTransaksi->result() as $Kamarkos) {
+            # code...
+            $jumlahKamarDiminta = $Kamarkos->Jumlahkamar;
+        }
+        $checkKamar = $jumlahkamar - $jumlahKamarDiminta;
+        if ($checkKamar != 0) {
+            $dataKamar = [
+                "Jumlahkamar" => $checkKamar,
+            ];
+        } else {
+            $dataKamar = [
+                "Jumlahkamar" => $checkKamar,
+                "Aktif" => 0,
+            ];
+        }
+        $this->db->where('id', $this->input->post('id_kamar'));
+        $this->db->update('kamarkos', $dataKamar);
     }
 
     function hapus_datatransaksi($id)
