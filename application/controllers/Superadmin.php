@@ -273,23 +273,28 @@ class superadmin extends CI_Controller
     }
     public function hapus_datatransaksi($id)
     {
-        $bukti = $this->mymodel->datatransaksiid($id)->row();
         $data = $this->mymodel->datatransaksiid($id)->row();
         $nama1 = 'androidAPI/Image/BuktiPembayaran/' . $data->Buktipembayaran;
-
+        print_r($nama1);
+        // die();
 
         if (
-            is_readable($nama1) && unlink($nama1)
+            is_readable($nama1) && unlink($nama1) && $data->Buktipembayaran != "Pending"
         ) {
             $this->mymodel->hapus_datatransaksi($id);
             $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
             Data transaksi berhasil dihapus </div>');
             redirect('superadmin/datatransaksi');
         } else {
-            $this->session->set_flashdata('Pesan', '<div class="alert alert-danger" role="alert">
-            Data transaksi gagal dihapus </div>');
+            $this->mymodel->hapus_datatransaksi($id);
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+            Data transaksi berhasil dihapus </div>');
             redirect('superadmin/datatransaksi');
         }
+
+        $this->session->set_flashdata('Pesan', '<div class="alert alert-danger" role="alert">
+            Data transaksi gagal dihapus </div>');
+        redirect('superadmin/datatransaksi');
     }
 
     //Controller Untuk Halaman riwayat Transaksi
