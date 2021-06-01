@@ -267,6 +267,14 @@ class mymodel extends CI_Model
 
     // Data Kos Model (Admin)
 
+
+
+    function GetDatapemilikid($id)
+    {
+        $query = $this->db->query("SELECT * FROM `admin` WHERE `id`='$id' ");
+        return $query->result();
+    }
+
     function tambahkos()
     {
         $target_dir = "androidAPI/Image/FotoKos/";
