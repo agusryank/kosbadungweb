@@ -66,7 +66,9 @@
                                 </p>
                                 <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 300px" required=""></div>
                             </div>
-
+                            <div class="form-group ">
+                                <input type="text" name="notelp" class="form-control " id="namapemilik" value="<?= $admin['No_telp'] ?>" required="">
+                            </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="hidden" name="lat" class="form-control " id="map_lat" placeholder="Latitude" required="">

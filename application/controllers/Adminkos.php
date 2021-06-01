@@ -44,6 +44,8 @@ class Adminkos extends CI_Controller
         $data['tittle'] = 'Data Kos';
         $data['admin'] = $this->db->get_where('admin', ['Username' => $this->session->userdata('Username')])->row_array();
 
+
+
         $this->load->view('templates/header',  $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
