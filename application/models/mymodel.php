@@ -202,7 +202,7 @@ class mymodel extends CI_Model
             redirect('superadmin/datatransaksi');
         } else {
             $this->session->set_flashdata('Pesan', '<div class="alert alert-danger" role="alert">
-      Data gagal diverivikasi </div>');
+            Kamar sudah kosong tidak dapat disewa lagi </div>');
             redirect('superadmin/datatransaksi');
         }
     }
