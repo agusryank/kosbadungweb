@@ -158,27 +158,12 @@ class mymodel extends CI_Model
         return $query->result();
     }
 
-    function proses_verivikasi_data_transaksi()
+    function proses_verivikasi_data_transaksi($id)
     {
-        $data = [
-            "Status" => $this->input->post('status'),
-        ];
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('transaksi', $data);
-
         $idKamarkos = $this->input->post('id_kamar');
         $idkos = $this->input->post('id');
-
-        print_r($idKamarkos);
-        print_r("<br>");
-        print_r($idkos);
-        print_r("<br>");
-
         $querykamarkos = $this->db->get_where('kamarkos', array('id' => $idKamarkos));
         $queryTransaksi = $this->db->get_where('transaksi', array('id' => $idkos));
-        print_r($querykamarkos->result());
-        print_r("<br>");
-        print_r($queryTransaksi->result());
 
         foreach ($querykamarkos->result() as $Kamarkos) {
             # code...
@@ -189,19 +174,37 @@ class mymodel extends CI_Model
             # code...
             $jumlahKamarDiminta = $Kamarkos->Jumlahkamar;
         }
-        $checkKamar = $jumlahkamar - $jumlahKamarDiminta;
-        if ($checkKamar != 0) {
-            $dataKamar = [
-                "Jumlahkamar" => $checkKamar,
+
+        if ($jumlahkamar > 0) {
+            $data = [
+                "Status" => $this->input->post('status'),
             ];
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('transaksi', $data);
+
+            $checkKamar = $jumlahkamar - $jumlahKamarDiminta;
+            if ($checkKamar != 0) {
+                $dataKamar = [
+                    "Jumlahkamar" => $checkKamar,
+                ];
+            } else {
+                $dataKamar = [
+                    "Jumlahkamar" => $checkKamar,
+                    "Aktif" => 0,
+                ];
+            }
+
+            $this->db->where('id', $this->input->post('id_kamar'));
+            $this->db->update('kamarkos', $dataKamar);
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
+        Data Telah Berhasil diverivikasi.
+      </div>');
+            redirect('superadmin/datatransaksi');
         } else {
-            $dataKamar = [
-                "Jumlahkamar" => $checkKamar,
-                "Aktif" => 0,
-            ];
+            $this->session->set_flashdata('Pesan', '<div class="alert alert-danger" role="alert">
+      Data gagal diverivikasi </div>');
+            redirect('superadmin/datatransaksi');
         }
-        $this->db->where('id', $this->input->post('id_kamar'));
-        $this->db->update('kamarkos', $dataKamar);
     }
 
     function hapus_datatransaksi($id)

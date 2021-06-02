@@ -266,10 +266,6 @@ class superadmin extends CI_Controller
     {
 
         $this->mymodel->proses_verivikasi_data_transaksi($id);
-        $this->session->set_flashdata('Pesan', '<div class="alert alert-success" role="alert">
-        Data Telah Berhasil diverivikasi.
-      </div>');
-        redirect('superadmin/datatransaksi');
     }
 
     public function hapus_datatransaksi($id)
