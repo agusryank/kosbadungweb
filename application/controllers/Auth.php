@@ -99,9 +99,10 @@ class Auth extends CI_Controller
                 'No_telp' => htmlspecialchars($this->input->post('notelp', true)),
                 'Jenis_kelamin' => htmlspecialchars($this->input->post('gender', true)),
                 'Username' => htmlspecialchars($this->input->post('username', true)),
-                'Password' => password_hash(
+                'Password' => htmlspecialchars(
                     $this->input->post('password1'),
-                    PASSWORD_DEFAULT
+                    true
+
                 ),
                 'Role_id' => 2
             ];
