@@ -39,9 +39,12 @@ class Auth extends CI_Controller
 
         //Jika adminnya ada
         if ($admin) {
-
-            // Cek Password
-            if (password_verify($password, $admin['Password'])) {
+            /**  Untuk if dibawah,fungsi password_verify akan melakukan hash pada input 
+             *   $password(variable pertama) dan akan mencoba mengecek data di database.
+             *   Dengan begitu bisa diasumsikan bahwa if dibawah sama dengan 
+             *   if(password_hash($password,PASSWORD_DEFAULT),password_hash($admin['Password'], PASSWORD_DEFAULT))
+             */
+            if (password_verify($password, password_hash($admin['Password'], PASSWORD_DEFAULT))) {
 
                 $data = [
                     'Username' => $admin['Username'],
